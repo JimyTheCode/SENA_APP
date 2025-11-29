@@ -1,0 +1,94 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}Detalles del Aprendiz{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'detalles.css' %}">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+
+<div class="container my-5">
+ <div class="card card-sena">
+   <div class="header">
+     <i class="bi bi-person-badge" style="font-size:1.6rem"></i>
+     <div>
+       <h2>Detalles del Aprendiz</h2>
+     </div>
+     <div style="margin-left:auto" class="small">ID: <strong>{{ aprendiz.documento_identidad }}</strong></div>
+   </div>
+
+   <div class="profile">
+     <div class="avatar">
+       {% if aprendiz.foto_url %}
+         <img src="{{ aprendiz.foto_url }}" alt="Foto aprendiz" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
+       {% else %}
+         {{ aprendiz.nombre|slice:":1" }}{{ aprendiz.apellido|slice:":1" }}
+       {% endif %}
+     </div>
+
+     <div class="info-summary">
+       <div class="name">{{ aprendiz.nombre }} {{ aprendiz.apellido }}</div>
+   </div>
+
+   <div class="content-grid">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+<div class="row-item">
+  <div class="icon"><i class="bi bi-file-earmark-person"></i></div>
+  <div>
+    <div class="label">Documento</div>
+    <div class="value">{{ aprendiz.documento_identidad }}</div>
+  </div>
+</div>
+
+     <div class="row-item">
+       <div class="icon"><i class="bi bi-envelope-fill"></i></div>
+       <div>
+         <div class="label">Correo</div>
+         <div class="value">{{ aprendiz.correo }}</div>
+       </div>
+     </div>
+
+     <div class="row-item">
+       <div class="icon"><i class="bi bi-telephone-fill"></i></div>
+       <div>
+         <div class="label">Teléfono</div>
+         <div class="value">{{ aprendiz.telefono }}</div>
+       </div>
+     </div>
+
+     <div class="row-item">
+       <div class="icon"><i class="bi bi-building"></i></div>
+       <div>
+         <div class="label">Programa</div>
+         <div class="value">{{ aprendiz.programa }}</div>
+       </div>
+     </div>
+
+     <div class="row-item">
+       <div class="icon"><i class="bi bi-geo-alt"></i></div>
+       <div>
+         <div class="label">Ciudad / Dirección</div>
+         <div class="value">{{ aprendiz.ciudad }}</div>
+       </div>
+     </div>
+
+     <div class="row-item">
+       <div class="icon"><i class="bi bi-calendar-event"></i></div>
+       <div>
+         <div class="label">Nacimiento</div>
+         <div class="value">{{ aprendiz.fecha_nacimiento|date:"d F, Y" }}</div>
+       </div>
+     </div>
+   </div>
+
+   <div class="actions">
+     <a href="/aprendices" class="btn-sena"><i class="bi bi-arrow-left-circle"></i> Volver al Listado</a>
+   </div>
+ </div>
+</div>
+
+{% endblock %}

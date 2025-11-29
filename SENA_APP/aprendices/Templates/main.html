@@ -1,0 +1,110 @@
+{% extends 'master.html' %}
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<!-- ==================== MAIN CONTENT ==================== -->
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="container hero-content">
+        <div class="text-center animate-fade-in">
+          <h1><i class="fas fa-graduation-cap"></i> Pagina web SENA APP</h1>
+          <p class="lead">Platarforma creada con Django</p>
+          <div class="hero-buttons">
+            <a href="/aprendices" class="btn btn-hero-primary">
+              <i class="fas fa-users"></i> Ver Aprendices
+            </a>
+            <a href="#features" class="btn btn-hero-secondary">
+              <i class="fas fa-info-circle"></i> Ver Instructores
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARACTERÍSTICAS -->
+    <section class="features-section" id="features">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold" style="color: var(--sena-dark-green);">Características Principales</h2>
+          <p class="text-muted">Todo lo que necesitas para gestionar tu institución</p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-user-graduate"></i>
+              </div>
+              <h4>Gestión de Aprendices</h4>
+              <p>Administra la información completa de cada aprendiz de manera eficiente.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-calendar-check"></i>
+              </div>
+              <h4>Control de Asistencia</h4>
+              <p>Registra y monitorea la asistencia en tiempo real.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-chart-pie"></i>
+              </div>
+              <h4>Reportes</h4>
+              <p>Genera reportes estadísticos y análisis de rendimiento.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-chalkboard-teacher"></i>
+              </div>
+              <h4>Instructores</h4>
+              <p>Gestiona información y asignaciones de instructores.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESTADÍSTICAS -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 col-6">
+            <div class="stat-item">
+              <span class="stat-number"><i class="fas fa-users"></i> 1,500+</span>
+              <span class="stat-label">Aprendices Activos</span>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="stat-item">
+              <span class="stat-number"><i class="fas fa-chalkboard-teacher"></i> 80+</span>
+              <span class="stat-label">Instructores</span>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="stat-item">
+              <span class="stat-number"><i class="fas fa-book"></i> 45+</span>
+              <span class="stat-label">Programas</span>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="stat-item">
+              <span class="stat-number"><i class="fas fa-award"></i> 95%</span>
+              <span class="stat-label">Satisfacción</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+{% endblock %}
