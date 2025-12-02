@@ -1,0 +1,201 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}Detalles del Instructor{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'detalles.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+<div class="container my-5">
+  <div class="card card-sena">
+    <div class="header">
+      <i class="bi bi-person-badge-fill" style="font-size:1.6rem"></i>
+      <div>
+        <h2>Detalles del Instructor</h2>
+      </div>
+      <div style="margin-left:auto" class="small">ID: <strong>{{ instructor.documento_identidad }}</strong></div>
+    </div>
+
+    <div class="profile">
+      <div class="avatar">
+        {% if instructor.foto_url %}
+          <img src="{{ instructor.foto_url }}" alt="Foto instructor" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
+        {% else %}
+          {{ instructor.nombre|slice:":1" }}{{ instructor.apellido|slice:":1" }}
+        {% endif %}
+      </div>
+
+      <div class="info-summary">
+        <div class="name">{{ instructor.nombre }} {{ instructor.apellido }}</div>
+        {% if instructor.especialidad %}
+          <div class="badge" style="background: linear-gradient(135deg,#39A900,#2d8000); color:white; padding:0.4rem 1rem; border-radius:20px; display:inline-block; margin-top:0.5rem;">
+            <i class="bi bi-book"></i> {{ instructor.especialidad }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="content-grid">
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-file-earmark-person"></i></div>
+        <div>
+          <div class="label">Tipo y Número de Documento</div>
+          <div class="value">{{ instructor.get_tipo_documento_display }}: {{ instructor.documento_identidad }}</div>
+        </div>
+      </div>
+
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-envelope-fill"></i></div>
+        <div>
+          <div class="label">Correo Electrónico</div>
+          <div class="value">
+            <a href="mailto:{{ instructor.correo }}" style="color:#39A900; text-decoration:none;">{{ instructor.correo }}</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-telephone-fill"></i></div>
+        <div>
+          <div class="label">Teléfono</div>
+          <div class="value">
+            {% if instructor.telefono %}
+              <a href="tel:{{ instructor.telefono }}" style="color:#39A900; text-decoration:none;">{{ instructor.telefono }}</a>
+            {% else %}
+              <span class="text-muted">No registrado</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-mortarboard-fill"></i></div>
+        <div>
+          <div class="label">Nivel Educativo</div>
+          <div class="value">{{ instructor.get_nivel_educativo_display }}</div>
+        </div>
+      </div>
+
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-book-half"></i></div>
+        <div>
+          <div class="label">Especialidad</div>
+          <div class="value">
+            {% if instructor.especialidad %}
+              {{ instructor.especialidad }}
+            {% else %}
+              <span class="text-muted">No especificada</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-briefcase-fill"></i></div>
+        <div>
+          <div class="label">Años de Experiencia</div>
+          <div class="value">
+            {% if instructor.anos_experiencia %}
+              {{ instructor.anos_experiencia }} año{{ instructor.anos_experiencia|pluralize }}
+            {% else %}
+              <span class="text-muted">No especificado</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-geo-alt-fill"></i></div>
+        <div>
+          <div class="label">Ciudad</div>
+          <div class="value">
+            {% if instructor.ciudad %}
+              {{ instructor.ciudad }}
+            {% else %}
+              <span class="text-muted">No especificada</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-house-door-fill"></i></div>
+        <div>
+          <div class="label">Dirección</div>
+          <div class="value">
+            {% if instructor.direccion %}
+              {{ instructor.direccion }}
+            {% else %}
+              <span class="text-muted">No registrada</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-calendar-event"></i></div>
+        <div>
+          <div class="label">Fecha de Nacimiento</div>
+          <div class="value">
+            {% if instructor.fecha_nacimiento %}
+              {{ instructor.fecha_nacimiento|date:"d F, Y" }}
+            {% else %}
+              <span class="text-muted">No registrada</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-calendar-check"></i></div>
+        <div>
+          <div class="label">Fecha de Vinculación</div>
+          <div class="value">
+            {% if instructor.fecha_vinculacion %}
+              {{ instructor.fecha_vinculacion|date:"d F, Y" }}
+            {% else %}
+              <span class="text-muted">No registrada</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-clock-history"></i></div>
+        <div>
+          <div class="label">Fecha de Registro en Sistema</div>
+          <div class="value">{{ instructor.fecha_registro|date:"d F, Y" }}</div>
+        </div>
+      </div>
+
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-toggle-on"></i></div>
+        <div>
+          <div class="label">Estado</div>
+          <div class="value">
+            {% if instructor.activo %}
+              <span style="color:#39A900; font-weight:600;">
+                <i class="bi bi-check-circle-fill"></i> Activo
+              </span>
+            {% else %}
+              <span style="color:#dc3545; font-weight:600;">
+                <i class="bi bi-x-circle-fill"></i> Inactivo
+              </span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a href="{% url 'lista_instructores' %}" class="btn-sena">
+        <i class="bi bi-arrow-left-circle"></i> Volver al Listado
+      </a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
