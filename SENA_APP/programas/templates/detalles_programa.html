@@ -1,0 +1,184 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}Detalles del Programa{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'detalles.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+<div class="container my-5">
+  <div class="card card-sena">
+    <div class="header">
+      <i class="bi bi-journal-bookmark-fill" style="font-size:1.6rem"></i>
+      <div>
+        <h2>Detalles del Programa de Formación</h2>
+      </div>
+      <div style="margin-left:auto" class="small">Código: <strong>{{ programa.codigo }}</strong></div>
+    </div>
+
+    <div class="profile">
+      <div class="avatar">
+        <i class="bi bi-mortarboard-fill" style="font-size:3rem"></i>
+      </div>
+
+      <div class="info-summary">
+        <div class="name">{{ programa.nombre }}</div>
+        <div class="badge" style="background: linear-gradient(135deg,#39A900,#2d8000); color:white; padding:0.4rem 1rem; border-radius:20px; display:inline-block; margin-top:0.5rem;">
+          <i class="bi bi-award"></i> {{ programa.get_nivel_formacion_display }}
+        </div>
+      </div>
+    </div>
+
+    <div class="content-grid">
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-upc-scan"></i></div>
+        <div>
+          <div class="label">Código del Programa</div>
+          <div class="value">{{ programa.codigo }}</div>
+        </div>
+      </div>
+
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-award-fill"></i></div>
+        <div>
+          <div class="label">Nivel de Formación</div>
+          <div class="value">{{ programa.get_nivel_formacion_display }}</div>
+        </div>
+      </div>
+
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-laptop"></i></div>
+        <div>
+          <div class="label">Modalidad</div>
+          <div class="value">
+            {% if programa.modalidad == 'PRE' %}
+              <i class="bi bi-building"></i>
+            {% elif programa.modalidad == 'VIR' %}
+              <i class="bi bi-laptop"></i>
+            {% else %}
+              <i class="bi bi-layer-group"></i>
+            {% endif %}
+            {{ programa.get_modalidad_display }}
+          </div>
+        </div>
+      </div>
+
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-calendar3"></i></div>
+        <div>
+          <div class="label">Duración en Meses</div>
+          <div class="value">{{ programa.duracion_meses }} mes{{ programa.duracion_meses|pluralize:"es" }}</div>
+        </div>
+      </div>
+
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-clock"></i></div>
+        <div>
+          <div class="label">Duración en Horas</div>
+          <div class="value">{{ programa.duracion_horas }} horas totales</div>
+        </div>
+      </div>
+
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-building"></i></div>
+        <div>
+          <div class="label">Centro de Formación</div>
+          <div class="value">{{ programa.centro_formacion }}</div>
+        </div>
+      </div>
+
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-geo-alt-fill"></i></div>
+        <div>
+          <div class="label">Regional</div>
+          <div class="value">{{ programa.regional }}</div>
+        </div>
+      </div>
+
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-calendar-check"></i></div>
+        <div>
+          <div class="label">Fecha de Creación del Programa</div>
+          <div class="value">{{ programa.fecha_creacion|date:"d F, Y" }}</div>
+        </div>
+      </div>
+
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-clock-history"></i></div>
+        <div>
+          <div class="label">Fecha de Registro en Sistema</div>
+          <div class="value">{{ programa.fecha_registro|date:"d F, Y" }}</div>
+        </div>
+      </div>
+
+      <div class="row-item">
+        <div class="icon"><i class="bi bi-toggle-on"></i></div>
+        <div>
+          <div class="label">Estado</div>
+          <div class="value">
+            {% if programa.estado == 'ACT' %}
+              <span style="color:#39A900; font-weight:600;">
+                <i class="bi bi-check-circle-fill"></i> Activo
+              </span>
+            {% elif programa.estado == 'INA' %}
+              <span style="color:#6c757d; font-weight:600;">
+                <i class="bi bi-pause-circle-fill"></i> Inactivo
+              </span>
+            {% elif programa.estado == 'SUS' %}
+              <span style="color:#ffc107; font-weight:600;">
+                <i class="bi bi-exclamation-circle-fill"></i> Suspendido
+              </span>
+            {% else %}
+              <span style="color:#dc3545; font-weight:600;">
+                <i class="bi bi-x-circle-fill"></i> Cancelado
+              </span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Descripción -->
+    <div style="margin-top:2rem; padding:1.5rem; background:#f8f9fa; border-radius:12px;">
+      <h5 style="color:#2d8000; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+        <i class="bi bi-card-text"></i> Descripción del Programa
+      </h5>
+      <p style="margin:0; line-height:1.7; color:#495057;">{{ programa.descripcion }}</p>
+    </div>
+
+    <!-- Sección de Competencias -->
+    <div style="margin-top:1.5rem; padding:1.5rem; background:#e8f5e0; border-radius:12px; border-left:4px solid #39A900;">
+      <h5 style="color:#2d8000; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+        <i class="bi bi-gear-fill"></i> Competencias a Desarrollar
+      </h5>
+      <p style="margin:0; line-height:1.7; color:#495057; white-space:pre-line;">{{ programa.competencias }}</p>
+    </div>
+
+    <!-- Sección de Perfil de Egreso -->
+    <div style="margin-top:1.5rem; padding:1.5rem; background:#f8f9fa; border-radius:12px;">
+      <h5 style="color:#2d8000; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+        <i class="bi bi-person-check-fill"></i> Perfil de Egreso
+      </h5>
+      <p style="margin:0; line-height:1.7; color:#495057; white-space:pre-line;">{{ programa.perfil_egreso }}</p>
+    </div>
+
+    <!-- Sección de Requisitos de Ingreso -->
+    <div style="margin-top:1.5rem; padding:1.5rem; background:#fff3cd; border-radius:12px; border-left:4px solid #ffc107;">
+      <h5 style="color:#856404; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+        <i class="bi bi-list-check"></i> Requisitos de Ingreso
+      </h5>
+      <p style="margin:0; line-height:1.7; color:#495057; white-space:pre-line;">{{ programa.requisitos_ingreso }}</p>
+    </div>
+
+    <div class="actions">
+      <a href="{% url 'lista_programas' %}" class="btn-sena">
+        <i class="bi bi-arrow-left-circle"></i> Volver al Listado
+      </a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
