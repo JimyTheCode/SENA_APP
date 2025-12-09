@@ -1,4 +1,4 @@
-{% extends 'master.html' %}
+﻿{% extends 'master.html' %}
 {% block title %}Inicio{% endblock %}
 
 {% block content %}
@@ -8,107 +8,300 @@
     <section class="hero-section">
       <div class="container hero-content">
         <div class="text-center animate-fade-in">
-          <h1><i class="fas fa-graduation-cap"></i> Pagina web SENA APP</h1>
-          <p class="lead">Platarforma creada con Django</p>
+          <h1><i class="fas fa-graduation-cap"></i> Plataforma SENA APP</h1>
+          <p class="lead">Sistema de Gestión Educativa desarrollado con Django</p>
           <div class="hero-buttons">
             <a href="/aprendices" class="btn btn-hero-primary">
               <i class="fas fa-users"></i> Ver Aprendices
             </a>
             <a href="/instructores" class="btn btn-hero-secondary">
-              <i class="fas fa-info-circle"></i> Ver Instructores
+              <i class="fas fa-chalkboard-teacher"></i> Ver Instructores
             </a>
             <a href="/programas" class="btn btn-hero-secondary">
-              <i class="fas fa-graduation-cap"></i> Ver Programas
+              <i class="fas fa-book-open"></i> Ver Programas
             </a>
-
+            <a href="/cursos" class="btn btn-hero-secondary">
+              <i class="fas fa-book"></i> Ver Cursos
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CARACTERÍSTICAS -->
-    <section class="features-section" id="features">
+    <!-- ESTADÍSTICAS PRINCIPALES -->
+    <section class="stats-principal-section" id="statistics">
       <div class="container">
-        <div class="text-center mb-5">
-          <h2 class="fw-bold" style="color: var(--sena-dark-green);">Características Principales</h2>
-          <p class="text-muted">Todo lo que necesitas para gestionar tu institución</p>
+        <div class="text-center mb-5 animate-fade-in">
+          <h2 class="fw-bold stats-title">Estadísticas Principales</h2>
+          <p class="stats-subtitle">Resumen completo de tu plataforma educativa SENA</p>
         </div>
 
         <div class="row g-4 justify-content-center">
-          <div class="col-md-6 col-lg-3">
-            <div class="feature-card">
-              <div class="feature-icon">
-                <i class="fas fa-user-graduate"></i>
+          <!-- Aprendices -->
+          <div class="col-md-6 col-lg-4">
+            <div class="stats-card stats-card-primary">
+              <i class="fas fa-user-graduate stats-emoji"></i>
+              <div class="stats-content">
+                <h4 class="stats-number">{{ aprendices_count }}</h4>
+                <p class="stats-label">Aprendices Registrados</p>
               </div>
-              <h4>Gestión de Aprendices</h4>
-              <p>Administra la información completa de cada aprendiz de manera eficiente.</p>
+              <div class="stats-glow"></div>
             </div>
           </div>
 
-          <div class="col-md-6 col-lg-3">
-            <div class="feature-card">
-              <div class="feature-icon">
-                <i class="fas fa-calendar-check"></i>
+          <!-- Instructores -->
+          <div class="col-md-6 col-lg-4">
+            <div class="stats-card stats-card-secondary">
+              <i class="fas fa-chalkboard-user stats-emoji"></i>
+              <div class="stats-content">
+                <h4 class="stats-number">{{ instructores_count }}</h4>
+                <p class="stats-label">Instructores Activos</p>
               </div>
-              <h4>Control de Asistencia</h4>
-              <p>Registra y monitorea la asistencia en tiempo real.</p>
+              <div class="stats-glow"></div>
             </div>
           </div>
 
-          <div class="col-md-6 col-lg-3">
-            <div class="feature-card">
-              <div class="feature-icon">
-                <i class="fas fa-chart-pie"></i>
+          <!-- Programas -->
+          <div class="col-md-6 col-lg-4">
+            <div class="stats-card stats-card-tertiary">
+              <i class="fas fa-book stats-emoji"></i>
+              <div class="stats-content">
+                <h4 class="stats-number">{{ programas_count }}</h4>
+                <p class="stats-label">Programas Disponibles</p>
               </div>
-              <h4>Reportes</h4>
-              <p>Genera reportes estadísticos y análisis de rendimiento.</p>
+              <div class="stats-glow"></div>
             </div>
           </div>
 
-          <div class="col-md-6 col-lg-3">
-            <div class="feature-card">
-              <div class="feature-icon">
-                <i class="fas fa-chalkboard-teacher"></i>
+          <!-- Cursos -->
+          <div class="col-md-6 col-lg-4">
+            <div class="stats-card stats-card-quaternary">
+              <i class="fas fa-list-check stats-emoji"></i>
+              <div class="stats-content">
+                <h4 class="stats-number">{{ cursos_count }}</h4>
+                <p class="stats-label">Cursos Disponibles</p>
               </div>
-              <h4>Instructores</h4>
-              <p>Gestiona información y asignaciones de instructores.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ESTADÍSTICAS -->
-    <section class="stats-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3 col-6">
-            <div class="stat-item">
-              <span class="stat-number"><i class="fas fa-users"></i> 1,500+</span>
-              <span class="stat-label">Aprendices Activos</span>
-            </div>
-          </div>
-          <div class="col-md-3 col-6">
-            <div class="stat-item">
-              <span class="stat-number"><i class="fas fa-chalkboard-teacher"></i> 80+</span>
-              <span class="stat-label">Instructores</span>
-            </div>
-          </div>
-          <div class="col-md-3 col-6">
-            <div class="stat-item">
-              <span class="stat-number"><i class="fas fa-book"></i> 45+</span>
-              <span class="stat-label">Programas</span>
-            </div>
-          </div>
-          <div class="col-md-3 col-6">
-            <div class="stat-item">
-              <span class="stat-number"><i class="fas fa-award"></i> 95%</span>
-              <span class="stat-label">Satisfacción</span>
+              <div class="stats-glow"></div>
             </div>
           </div>
         </div>
       </div>
     </section>
   </main>
+
+  <style>
+    /* Fix para eliminar las líneas en la parte superior de las tarjetas */
+    .stats-card::before {
+      display: none !important;
+    }
+
+    /* Mejora visual de las tarjetas */
+    .stats-card {
+      background: white;
+      border-radius: 24px;
+      padding: 3rem 2rem 2rem;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: 2px solid transparent;
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .stats-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Borde superior de color para cada tarjeta */
+    .stats-card-primary {
+      border-top: 5px solid #39A900;
+    }
+
+    .stats-card-primary:hover {
+      background: linear-gradient(135deg, #f0fff0 0%, #ffffff 100%);
+      box-shadow: 0 25px 60px rgba(57, 169, 0, 0.2);
+    }
+
+    .stats-card-secondary {
+      border-top: 5px solid #0066cc;
+    }
+
+    .stats-card-secondary:hover {
+      background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
+      box-shadow: 0 25px 60px rgba(0, 102, 204, 0.2);
+    }
+
+    .stats-card-tertiary {
+      border-top: 5px solid #ff6b35;
+    }
+
+    .stats-card-tertiary:hover {
+      background: linear-gradient(135deg, #fff5f0 0%, #ffffff 100%);
+      box-shadow: 0 25px 60px rgba(255, 107, 53, 0.2);
+    }
+
+    .stats-card-quaternary {
+      border-top: 5px solid #9c27b0;
+    }
+
+    .stats-card-quaternary:hover {
+      background: linear-gradient(135deg, #f8f5ff 0%, #ffffff 100%);
+      box-shadow: 0 25px 60px rgba(156, 39, 176, 0.2);
+    }
+
+    /* Icons mejorados */
+    .stats-emoji {
+      font-size: 4.5rem;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      transition: all 0.4s ease;
+      line-height: 1;
+    }
+
+    /* Colorear los iconos según la tarjeta */
+    .stats-card-primary .stats-emoji {
+      color: #39A900;
+    }
+
+    .stats-card-secondary .stats-emoji {
+      color: #0066cc;
+    }
+
+    .stats-card-tertiary .stats-emoji {
+      color: #ff6b35;
+    }
+
+    .stats-card-quaternary .stats-emoji {
+      color: #9c27b0;
+    }
+
+    .stats-card:hover .stats-emoji {
+      transform: scale(1.3) rotate(-12deg);
+      text-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Números de estadísticas */
+    .stats-number {
+      font-size: 3.8rem;
+      font-weight: 900;
+      color: #1a1a2e;
+      margin: 0.5rem 0 0;
+      line-height: 1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .stats-card-primary:hover .stats-number {
+      color: #39A900;
+    }
+
+    .stats-card-secondary:hover .stats-number {
+      color: #0066cc;
+    }
+
+    .stats-card-tertiary:hover .stats-number {
+      color: #ff6b35;
+    }
+
+    .stats-card-quaternary:hover .stats-number {
+      color: #9c27b0;
+    }
+
+    /* Etiquetas */
+    .stats-label {
+      font-size: 1.1rem;
+      color: #6b7280;
+      font-weight: 700;
+      margin: 0.75rem 0 0;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+    }
+
+    /* Efecto glow */
+    .stats-glow {
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(57, 169, 0, 0.15), transparent);
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .stats-card-secondary .stats-glow {
+      background: radial-gradient(circle, rgba(0, 102, 204, 0.15), transparent);
+    }
+
+    .stats-card-tertiary .stats-glow {
+      background: radial-gradient(circle, rgba(255, 107, 53, 0.15), transparent);
+    }
+
+    .stats-card-quaternary .stats-glow {
+      background: radial-gradient(circle, rgba(156, 39, 176, 0.15), transparent);
+    }
+
+    .stats-card:hover .stats-glow {
+      opacity: 1;
+    }
+
+    /* Sección de estadísticas */
+    .stats-principal-section {
+      padding: 5rem 0;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Título mejorado */
+    .stats-title {
+      font-size: 2.8rem !important;
+      color: #1a1a2e !important;
+      margin-bottom: 0.5rem;
+      font-weight: 900 !important;
+    }
+
+    .stats-subtitle {
+      font-size: 1.25rem;
+      color: #6b7280;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .stats-principal-section {
+        padding: 3rem 0;
+      }
+
+      .stats-title {
+        font-size: 2rem !important;
+      }
+
+      .stats-subtitle {
+        font-size: 1rem;
+      }
+
+      .stats-emoji {
+        font-size: 3.5rem;
+      }
+
+      .stats-number {
+        font-size: 2.8rem;
+      }
+
+      .stats-card {
+        padding: 2.5rem 1.5rem 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+    }
+  </style>
 
 {% endblock %}

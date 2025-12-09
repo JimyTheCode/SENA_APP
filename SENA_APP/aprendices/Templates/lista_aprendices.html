@@ -10,14 +10,21 @@
       <small class="text-muted">Visualiza y administra la información de los aprendices</small>
     </div>
 
-    <div class="d-flex gap-2 align-items-center">
+    <div class="d-flex gap-2 align-items-center flex-wrap">
       <!-- Buscador cliente-side -->
-      <div class="input-group">
+      <div class="input-group" style="flex: 1; min-width: 250px;">
         <span class="input-group-text" id="search-addon"><i class="fas fa-search"></i></span>
         <input id="tableSearch" type="search" class="form-control" placeholder="Buscar por documento, nombre o programa" aria-label="Buscar" aria-describedby="search-addon">
       </div>
 
-      <a href="/" class="btn btn-outline-secondary">Volver</a>
+      <!-- Botón Agregar Aprendiz -->
+      <a href="{% url 'crear_aprendiz' %}" class="btn btn-agregar-aprendiz">
+        <i class="fas fa-user-plus"></i> <span class="d-none d-sm-inline">Agregar Aprendiz</span>
+      </a>
+
+      <a href="/" class="btn btn-volver">
+        <i class="fas fa-arrow-left"></i> <span class="d-none d-sm-inline">Volver</span>
+      </a>
     </div>
   </div>
 
@@ -83,10 +90,22 @@
           <td class="d-none d-lg-table-cell">{{ apprentice.ciudad }}</td>
 
           <td class="text-center">
-            <!-- Ajusta el nombre de la URL si tu ruta es otra -->
-            <a href="{% url 'detalle_aprendiz' apprentice.id %}" class="btn btn-sm" style="background: #39A900; color: white;">
-              <i class="fas fa-eye"></i> Ver
-            </a>
+            <div class="d-flex gap-1 justify-content-center flex-wrap">
+              <!-- Botón Ver -->
+              <a href="{% url 'detalle_aprendiz' apprentice.id %}" class="btn btn-sm btn-ver" title="Ver detalles">
+                <i class="fas fa-eye"></i> <span class="d-none d-md-inline">Ver</span>
+              </a>
+              
+              <!-- Botón Editar -->
+              <a href="{% url 'editar_aprendiz' apprentice.id %}" class="btn btn-sm btn-editar" title="Editar aprendiz">
+                <i class="fas fa-edit"></i> <span class="d-none d-md-inline">Editar</span>
+              </a>
+              
+              <!-- Botón Eliminar -->
+              <a href="{% url 'eliminar_aprendiz' apprentice.id %}" class="btn btn-sm btn-eliminar" title="Eliminar aprendiz">
+                <i class="fas fa-trash"></i> <span class="d-none d-md-inline">Eliminar</span>
+              </a>
+            </div>
           </td>
         </tr>
         {% empty %}
@@ -140,6 +159,123 @@
     padding: .35rem .6rem;
     font-size: .85rem;
     border-radius: .5rem;
+  }
+
+  /* Botón Agregar Aprendiz - Bonito y Llamativo */
+  .btn-agregar-aprendiz {
+    background: linear-gradient(135deg, #39A900 0%, #2d8000 100%);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(57, 169, 0, 0.3);
+    white-space: nowrap;
+  }
+
+  .btn-agregar-aprendiz:hover {
+    background: linear-gradient(135deg, #2d8000 0%, #1f5a00 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(57, 169, 0, 0.4);
+    text-decoration: none;
+  }
+
+  .btn-agregar-aprendiz:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(57, 169, 0, 0.3);
+  }
+
+  .btn-agregar-aprendiz i {
+    margin-right: 0.5rem;
+  }
+
+  /* Botones de Acciones en la Tabla */
+  
+  /* Botón Ver - Verde */
+  .btn-ver {
+    background: linear-gradient(135deg, #39A900 0%, #2d8000 100%);
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-ver:hover {
+    background: linear-gradient(135deg, #2d8000 0%, #1f5a00 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(57, 169, 0, 0.3);
+    text-decoration: none;
+  }
+
+  /* Botón Editar - Azul */
+  .btn-editar {
+    background: linear-gradient(135deg, #0066cc 0%, #004a99 100%);
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-editar:hover {
+    background: linear-gradient(135deg, #004a99 0%, #003366 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 102, 204, 0.3);
+    text-decoration: none;
+  }
+
+  /* Botón Eliminar - Rojo */
+  .btn-eliminar {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-eliminar:hover {
+    background: linear-gradient(135deg, #c82333 0%, #a71d2a 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3);
+    text-decoration: none;
+  }
+
+  /* Botón Volver - Mejorado */
+  .btn-volver {
+    background: white;
+    color: #2d8000;
+    border: 2px solid rgba(45,128,0,0.12);
+    padding: 0.45rem 1rem;
+    font-weight: 600;
+    border-radius: 0.6rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.25s ease;
+    box-shadow: 0 6px 18px rgba(45,128,0,0.08);
+  }
+
+  .btn-volver i { color: #2d8000; }
+
+  .btn-volver:hover {
+    background: linear-gradient(135deg, #f0fff0 0%, #ecfff0 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 26px rgba(45,128,0,0.12);
+    text-decoration: none;
+  }
+
+  /* En móviles, ajusta el texto */
+  @media (max-width: 576px) {
+    .btn-agregar-aprendiz {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .btn-ver, .btn-editar, .btn-eliminar {
+      padding: 0.35rem 0.5rem;
+      font-size: 0.75rem;
+    }
   }
 </style>
 
