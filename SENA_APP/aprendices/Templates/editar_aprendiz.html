@@ -1,0 +1,226 @@
+{% extends "master.html"%}
+
+{% block title %}Agregar Aprendiz{% endblock %}
+
+{% block content %}
+<style>
+    :root{
+        --sena-green: #39A900;
+        --sena-dark: #2b8a00;
+        --light-bg: #f4f7f5;
+        --card-bg: #ffffff;
+        --radius: 12px;
+        --text-dark: #0b2b12;
+        --text-muted: #6d6d6d;
+    }
+
+    body{ background: var(--light-bg); }
+
+    .form-container{
+        max-width: 850px;
+        margin: 30px auto;
+        padding: 20px;
+    }
+
+    .form-card{
+        background: var(--card-bg);
+        padding: 30px;
+        border-radius: var(--radius);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .header-box{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .icon-badge{
+        width: 50px;
+        height: 50px;
+        background: var(--sena-green);
+        color: white;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 20px;
+        box-shadow: 0 6px 15px rgba(57,169,0,0.3);
+    }
+
+    .form-title{
+        font-size: 22px;
+        margin: 0;
+        color: var(--text-dark);
+        font-weight: 700;
+    }
+
+    .grid-2{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 18px;
+        margin-top: 15px;
+    }
+
+    label{
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--text-dark);
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    .form-control{
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid rgba(0,0,0,0.15);
+        border-radius: 8px;
+        background: #fff;
+        font-size: 14px;
+        transition: all 0.18s ease;
+    }
+
+    .form-control:focus{
+        outline: none;
+        border-color: var(--sena-green);
+        box-shadow: 0 0 6px rgba(57,169,0,0.25);
+    }
+
+    .errorlist{
+        padding: 8px 12px;
+        background: rgba(255, 220, 220, 0.95);
+        color: #8b1c1c;
+        border-radius: 8px;
+        font-size: 13px;
+        margin-bottom: 8px;
+        list-style: none;
+    }
+
+    .btn-save{
+        background: var(--sena-green);
+        color: white;
+        border: none;
+        padding: 12px 22px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 15px;
+        cursor: pointer;
+        transition: transform 0.1s ease;
+    }
+
+    .btn-save:hover{
+        transform: translateY(-2px);
+        background: var(--sena-dark);
+    }
+
+    .btn-cancel{
+        background: #888;
+        color: white;
+        border: none;
+        padding: 12px 22px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 15px;
+        cursor: pointer;
+        margin-left: 10px;
+        transition: transform 0.1s ease;
+    }
+
+    .btn-cancel:hover{
+        transform: translateY(-2px);
+        background: #555;
+    }
+
+    .actions{
+        margin-top: 25px;
+    }
+
+</style>
+
+<div class="form-container">
+    <div class="form-card">
+
+        <div class="header-box">
+            <div class="icon-badge">A</div>
+            <div>
+                <h2 class="form-title">Agregar Aprendiz</h2>
+                <p style="margin: 0; color: var(--text-muted); font-size: 14px;">
+                    Complete todos los campos obligatorios para registrar un aprendiz.
+                </p>
+            </div>
+        </div>
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+
+            <div class="grid-2">
+
+                <div>
+                    <label>{{ form.documento_identidad.label }}</label>
+                    {{ form.documento_identidad }}
+                    {{ form.documento_identidad.errors }}
+                </div>
+
+                <div>
+                    <label>{{ form.nombre.label }}</label>
+                    {{ form.nombre }}
+                    {{ form.nombre.errors }}
+                </div>
+
+                <div>
+                    <label>{{ form.apellido.label }}</label>
+                    {{ form.apellido }}
+                    {{ form.apellido.errors }}
+                </div>
+
+                <div>
+                    <label>{{ form.telefono.label }}</label>
+                    {{ form.telefono }}
+                    {{ form.telefono.errors }}
+                </div>
+
+                <div>
+                    <label>{{ form.correo.label }}</label>
+                    {{ form.correo }}
+                    {{ form.correo.errors }}
+                </div>
+
+                <div>
+                    <label>{{ form.fecha_nacimiento.label }}</label>
+                    {{ form.fecha_nacimiento }}
+                    {{ form.fecha_nacimiento.errors }}
+                </div>
+
+                <div>
+                    <label>{{ form.ciudad.label }}</label>
+                    {{ form.ciudad }}
+                    {{ form.ciudad.errors }}
+                </div>
+
+                <!-- NUEVO CAMPO PROGRAMA -->
+                <div>
+                    <label>{{ form.programa.label }}</label>
+                    {{ form.programa }}
+                    {{ form.programa.errors }}
+                </div>
+
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="btn-save">Guardar Aprendiz</button>
+                
+                <!-- Botón de CANCELAR / VOLVER -->
+                <a href="{% url 'lista_aprendices' %}">
+                    <button type="button" class="btn-cancel">Cancelar</button>
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
