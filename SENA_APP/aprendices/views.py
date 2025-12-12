@@ -61,7 +61,7 @@ class AprendizCreateView(generic.CreateView):
     model = Aprendiz
     form_class = AprendizForm
     template_name = 'agregar_aprendiz.html'
-    success_url = reverse_lazy('lista_aprendices')
+    success_url = reverse_lazy('aprendices:lista_aprendices')
     
     def form_valid(self, form):
         """Mostrar mensaje de éxito al crear el aprendiz"""
@@ -86,7 +86,7 @@ class AprendizUpdateView(generic.UpdateView):
     model = Aprendiz
     form_class = AprendizForm
     template_name = 'editar_aprendiz.html'
-    success_url = reverse_lazy('lista_aprendices')
+    success_url = reverse_lazy('aprendices:lista_aprendices')
     pk_url_kwarg = 'aprendiz_id'
     
     def form_valid(self, form):
@@ -111,7 +111,7 @@ class AprendizDeleteView(generic.DeleteView):
     """Vista para eliminar un aprendiz"""
     model = Aprendiz
     template_name = 'eliminar_aprendiz.html'
-    success_url = reverse_lazy('lista_aprendices')
+    success_url = reverse_lazy('aprendices:lista_aprendices')
     pk_url_kwarg = 'aprendiz_id'
     
     def delete(self, request, *args, **kwargs):

@@ -18,7 +18,7 @@
       </div>
 
       <!-- Botón Agregar Aprendiz -->
-      <a href="{% url 'crear_aprendiz' %}" class="btn btn-agregar-aprendiz">
+      <a href="{% url 'aprendices:crear_aprendiz' %}" class="btn btn-agregar-aprendiz">
         <i class="fas fa-user-plus"></i> <span class="d-none d-sm-inline">Agregar Aprendiz</span>
       </a>
 
@@ -92,17 +92,17 @@
           <td class="text-center">
             <div class="d-flex gap-1 justify-content-center flex-wrap">
               <!-- Botón Ver -->
-              <a href="{% url 'detalle_aprendiz' apprentice.id %}" class="btn btn-sm btn-ver" title="Ver detalles">
+              <a href="{% url 'aprendices:detalle_aprendiz' apprentice.id %}" class="btn btn-sm btn-ver" title="Ver detalles">
                 <i class="fas fa-eye"></i> <span class="d-none d-md-inline">Ver</span>
               </a>
               
               <!-- Botón Editar -->
-              <a href="{% url 'editar_aprendiz' apprentice.id %}" class="btn btn-sm btn-editar" title="Editar aprendiz">
+              <a href="{% url 'aprendices:editar_aprendiz' apprentice.id %}" class="btn btn-sm btn-editar" title="Editar aprendiz">
                 <i class="fas fa-edit"></i> <span class="d-none d-md-inline">Editar</span>
               </a>
               
               <!-- Botón Eliminar -->
-              <a href="{% url 'eliminar_aprendiz' apprentice.id %}" class="btn btn-sm btn-eliminar" title="Eliminar aprendiz">
+              <a href="{% url 'aprendices:eliminar_aprendiz' apprentice.id %}" class="btn btn-sm btn-eliminar" title="Eliminar aprendiz">
                 <i class="fas fa-trash"></i> <span class="d-none d-md-inline">Eliminar</span>
               </a>
             </div>
@@ -121,7 +121,7 @@
 
   <div class="mt-3 d-flex justify-content-between align-items-center">
     <div class="text-muted">Mostrando <strong>{{ aprendices|length }}</strong> registros</div>
-    <!-- Si usas paginación en el backend, muestra aquí los links -->
+
     {% if is_paginated %}
     <nav aria-label="Paginación">
       <ul class="pagination mb-0">
@@ -138,7 +138,7 @@
   </div>
 </div>
 
-<!-- Estilos adicionales pequeños (si prefieres, muévelos a tu CSS global) -->
+<!-- Estilos personalizados -->
 <style>
   /* Ajustes rápidos para que combine con la paleta SENA */
   .table thead th {
@@ -279,7 +279,7 @@
   }
 </style>
 
-<!-- Script de filtrado cliente-side (simple y rápido) -->
+<!-- Script de filtrado -->
 <script>
   (function(){
     const input = document.getElementById('tableSearch');

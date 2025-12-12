@@ -37,12 +37,12 @@
       <div class="collapse navbar-collapse" id="navbarContent">
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="/">
+            <a class="nav-link {% if request.resolver_match.url_name == 'main' or request.path == '/' %}active{% endif %}" href="/">
               <i class="fas fa-home"></i> Inicio
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {% if 'aprendices' in request.path %}active{% endif %}" href="/aprendices">
+            <a class="nav-link {% if 'aprendices' in request.path and request.path != '/' %}active{% endif %}" href="/aprendices">
               <i class="fas fa-users"></i> Aprendices
             </a>
           </li>

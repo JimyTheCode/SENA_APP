@@ -207,7 +207,6 @@
       </div>
     </header>
 
-    {# Muestra errores no asociados a un campo #}
     {% if form.non_field_errors %}
       <div class="errorlist">{{ form.non_field_errors }}</div>
     {% endif %}
@@ -220,7 +219,7 @@
       </div>
 
       <div class="form-actions">
-        <a href="{% url 'lista_aprendices' %}" class="btn-cancel" title="Cancelar y volver a la lista">
+        <a href="{% url 'aprendices:lista_aprendices' %}" class="btn-cancel" title="Cancelar y volver a la lista">
           <span class="btn-arrow">←</span>
           <span class="btn-text">Cancelar</span>
         </a>
