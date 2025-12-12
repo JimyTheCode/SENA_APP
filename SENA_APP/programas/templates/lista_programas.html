@@ -10,14 +10,21 @@
       <small class="text-muted">Visualiza y administra la información de los programas</small>
     </div>
 
-    <div class="d-flex gap-2 align-items-center">
+    <div class="d-flex gap-2 align-items-center flex-wrap">
       <!-- Buscador cliente-side -->
-      <div class="input-group">
+      <div class="input-group" style="flex: 1; min-width: 250px;">
         <span class="input-group-text" id="search-addon"><i class="fas fa-search"></i></span>
         <input id="tableSearch" type="search" class="form-control" placeholder="Buscar por código, nombre o nivel" aria-label="Buscar" aria-describedby="search-addon">
       </div>
 
-      <a href="/" class="btn btn-outline-secondary">Volver</a>
+      <!-- Botón Agregar Programa -->
+      <a href="{% url 'programas:crear_programa' %}" class="btn btn-agregar-programa">
+        <i class="fas fa-plus-circle"></i> <span class="d-none d-sm-inline">Agregar Programa</span>
+      </a>
+
+      <a href="/" class="btn btn-volver">
+        <i class="fas fa-arrow-left"></i> <span class="d-none d-sm-inline">Volver</span>
+      </a>
     </div>
   </div>
 
@@ -107,9 +114,22 @@
           </td>
 
           <td class="text-center">
-            <a href="{% url 'detalle_programas' programa.id %}" class="btn btn-sm" style="background: #39A900; color: white;">
-              <i class="fas fa-eye"></i> Ver
-            </a>
+            <div class="d-flex gap-1 justify-content-center flex-nowrap">
+              <!-- Botón Ver -->
+              <a href="{% url 'programas:detalle_programas' programa.id %}" class="btn btn-sm btn-ver" title="Ver detalles">
+                <i class="fas fa-eye"></i> <span class="d-none d-md-inline">Ver</span>
+              </a>
+              
+              <!-- Botón Editar -->
+              <a href="{% url 'programas:editar_programa' programa.id %}" class="btn btn-sm btn-editar" title="Editar programa">
+                <i class="fas fa-edit"></i> <span class="d-none d-md-inline">Editar</span>
+              </a>
+              
+              <!-- Botón Eliminar -->
+              <a href="{% url 'programas:eliminar_programa' programa.id %}" class="btn btn-sm btn-eliminar" title="Eliminar programa">
+                <i class="fas fa-trash"></i> <span class="d-none d-md-inline">Eliminar</span>
+              </a>
+            </div>
           </td>
         </tr>
         {% empty %}
@@ -126,7 +146,7 @@
 
   <div class="mt-3 d-flex justify-content-between align-items-center">
     <div class="text-muted">Mostrando <strong>{{ programas|length }}</strong> registro{{ programas|length|pluralize }}</div>
-    <!-- Si usas paginación en el backend, muestra aquí los links -->
+
     {% if is_paginated %}
     <nav aria-label="Paginación">
       <ul class="pagination mb-0">
@@ -164,6 +184,111 @@
     padding: .35rem .6rem;
     font-size: .85rem;
     border-radius: .5rem;
+    white-space: nowrap;
+  }
+
+  /* Botón Agregar Programa - Bonito y Llamativo */
+  .btn-agregar-programa {
+    background: linear-gradient(135deg, #39A900 0%, #2d8000 100%);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(57, 169, 0, 0.3);
+    white-space: nowrap;
+  }
+
+  .btn-agregar-programa:hover {
+    background: linear-gradient(135deg, #2d8000 0%, #1f5a00 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(57, 169, 0, 0.4);
+    text-decoration: none;
+  }
+
+  .btn-agregar-programa:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(57, 169, 0, 0.3);
+  }
+
+  .btn-agregar-programa i {
+    margin-right: 0.5rem;
+  }
+
+  /* Botones de Acciones en la Tabla */
+  
+  /* Botón Ver - Verde */
+  .btn-ver {
+    background: linear-gradient(135deg, #39A900 0%, #2d8000 100%);
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-ver:hover {
+    background: linear-gradient(135deg, #2d8000 0%, #1f5a00 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(57, 169, 0, 0.3);
+    text-decoration: none;
+  }
+
+  /* Botón Editar - Azul */
+  .btn-editar {
+    background: linear-gradient(135deg, #0066cc 0%, #004a99 100%);
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-editar:hover {
+    background: linear-gradient(135deg, #004a99 0%, #003366 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 102, 204, 0.3);
+    text-decoration: none;
+  }
+
+  /* Botón Eliminar - Rojo */
+  .btn-eliminar {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-eliminar:hover {
+    background: linear-gradient(135deg, #c82333 0%, #a71d2a 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3);
+    text-decoration: none;
+  }
+
+  /* Botón Volver - Mejorado */
+  .btn-volver {
+    background: white;
+    color: #2d8000;
+    border: 2px solid rgba(45,128,0,0.12);
+    padding: 0.45rem 1rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .btn-volver:hover {
+    background: #f9f9f9;
+    color: #1f5a00;
+    border-color: rgba(45,128,0,0.25);
+    text-decoration: none;
+    transform: translateY(-2px);
+  }
+
+  .btn-volver i {
+    margin-right: 0.5rem;
   }
 </style>
 

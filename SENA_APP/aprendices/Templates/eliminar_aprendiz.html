@@ -228,13 +228,13 @@
     <form method="post" style="margin-top:12px;">
       {% csrf_token %}
       <div class="actions">
-        <!-- Botón "Volver" más colorido con flecha + texto -->
-        <a href="{% url 'lista_aprendices' %}" class="btn-cancel-like" title="Cancelar y volver a la lista">
+        <!-- Botón "Volver" -->
+        <a href="{% url 'aprendices:lista_aprendices' %}" class="btn-cancel-like" title="Cancelar y volver a la lista">
           <span class="btn-arrow">←</span>
           <span class="btn-text">Volver</span>
         </a>
-        <!-- Botón secundario para opciones (opcional) -->
-        <button type="button" onclick="window.location.href='{% url 'detalle_aprendiz' aprendiz.pk %}'" class="btn-primary-like" title="Ver detalles antes de eliminar">
+        <!-- Botón secundario para opciones -->
+        <button type="button" onclick="window.location.href='{% url 'aprendices:detalle_aprendiz' aprendiz.pk %}'" class="btn-primary-like" title="Ver detalles antes de eliminar">
           <i class="bi bi-eye"></i> Ver detalles
         </button>
 
