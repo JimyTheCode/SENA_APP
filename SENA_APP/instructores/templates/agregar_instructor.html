@@ -1,0 +1,353 @@
+{% extends "master.html" %}
+{% load django_bootstrap5 %}
+
+{% block title %}Agregar Instructor{% endblock %}
+
+{% block content %}
+<style>
+  :root{
+    --sena-green: #39A900;
+    --sena-dark: #2b8a00;
+    --card-bg: #ffffff;
+    --page-bg: #f4f7f5;
+    --muted: #6b6b6b;
+    --radius: 12px;
+  }
+
+  .form-page {
+    display: flex;
+    justify-content: center;
+    padding: 28px 12px;
+    background: var(--page-bg);
+  }
+
+  .form-card {
+    width: 100%;
+    max-width: 920px;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(6, 25, 12, 0.06);
+    padding: 26px;
+    box-sizing: border-box;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+
+  .form-card header {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom: 16px;
+  }
+
+  .brand-dot {
+    width:46px;
+    height:46px;
+    background: linear-gradient(135deg, var(--sena-green), var(--sena-dark));
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(57,169,0,0.18);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:24px;
+    font-weight:700;
+  }
+
+  h1 {
+    color: var(--sena-dark);
+    font-weight: 600;
+    margin: 0;
+    font-size: 26px;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 640px) {
+    .form-grid { grid-template-columns: 1fr; }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group.full {
+    grid-column: 1 / -1;
+  }
+
+  label {
+    font-weight: 600;
+    color: var(--sena-dark);
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  input, select, textarea {
+    padding: 10px 12px !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 8px !important;
+    font-size: 14px;
+    transition: border-color 0.3s;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--sena-green) !important;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(57,169,0,0.1) !important;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    justify-content: flex-end;
+  }
+
+  .btn-guardar {
+    background: linear-gradient(135deg, var(--sena-green), var(--sena-dark));
+    color: white;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(57,169,0,0.3);
+  }
+
+  .btn-guardar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(57,169,0,0.4);
+  }
+
+  .btn-cancelar {
+    background: white;
+    color: var(--sena-dark);
+    padding: 10px 24px;
+    border: 2px solid var(--sena-green);
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  .btn-cancelar:hover {
+    background: #f9f9f9;
+    text-decoration: none;
+  }
+
+  .errorlist {
+    list-style: none;
+    padding: 0;
+    margin-top: 8px;
+  }
+
+  .errorlist li {
+    background: #fee;
+    color: #c33;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+</style>
+
+<div class="form-page">
+  <div class="form-card">
+    <header>
+      <div class="brand-dot"><i class="fas fa-plus"></i></div>
+      <h1>Agregar Nuevo Instructor</h1>
+    </header>
+
+    <form method="post" class="form-container">
+      {% csrf_token %}
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="{{ form.tipo_documento.id_for_label }}">{{ form.tipo_documento.label }}</label>
+          {{ form.tipo_documento }}
+          {% if form.tipo_documento.errors %}
+            <ul class="errorlist">
+              {% for error in form.tipo_documento.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ form.documento_identidad.id_for_label }}">{{ form.documento_identidad.label }}</label>
+          {{ form.documento_identidad }}
+          {% if form.documento_identidad.errors %}
+            <ul class="errorlist">
+              {% for error in form.documento_identidad.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ form.nombre.id_for_label }}">{{ form.nombre.label }}</label>
+          {{ form.nombre }}
+          {% if form.nombre.errors %}
+            <ul class="errorlist">
+              {% for error in form.nombre.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ form.apellido.id_for_label }}">{{ form.apellido.label }}</label>
+          {{ form.apellido }}
+          {% if form.apellido.errors %}
+            <ul class="errorlist">
+              {% for error in form.apellido.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ form.telefono.id_for_label }}">{{ form.telefono.label }}</label>
+          {{ form.telefono }}
+          {% if form.telefono.errors %}
+            <ul class="errorlist">
+              {% for error in form.telefono.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ form.correo.id_for_label }}">{{ form.correo.label }}</label>
+          {{ form.correo }}
+          {% if form.correo.errors %}
+            <ul class="errorlist">
+              {% for error in form.correo.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ form.fecha_nacimiento.id_for_label }}">{{ form.fecha_nacimiento.label }}</label>
+          {{ form.fecha_nacimiento }}
+          {% if form.fecha_nacimiento.errors %}
+            <ul class="errorlist">
+              {% for error in form.fecha_nacimiento.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ form.ciudad.id_for_label }}">{{ form.ciudad.label }}</label>
+          {{ form.ciudad }}
+          {% if form.ciudad.errors %}
+            <ul class="errorlist">
+              {% for error in form.ciudad.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ form.direccion.id_for_label }}">{{ form.direccion.label }}</label>
+          {{ form.direccion }}
+          {% if form.direccion.errors %}
+            <ul class="errorlist">
+              {% for error in form.direccion.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ form.nivel_educativo.id_for_label }}">{{ form.nivel_educativo.label }}</label>
+          {{ form.nivel_educativo }}
+          {% if form.nivel_educativo.errors %}
+            <ul class="errorlist">
+              {% for error in form.nivel_educativo.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ form.especialidad.id_for_label }}">{{ form.especialidad.label }}</label>
+          {{ form.especialidad }}
+          {% if form.especialidad.errors %}
+            <ul class="errorlist">
+              {% for error in form.especialidad.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ form.anos_experiencia.id_for_label }}">{{ form.anos_experiencia.label }}</label>
+          {{ form.anos_experiencia }}
+          {% if form.anos_experiencia.errors %}
+            <ul class="errorlist">
+              {% for error in form.anos_experiencia.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ form.fecha_vinculacion.id_for_label }}">{{ form.fecha_vinculacion.label }}</label>
+          {{ form.fecha_vinculacion }}
+          {% if form.fecha_vinculacion.errors %}
+            <ul class="errorlist">
+              {% for error in form.fecha_vinculacion.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ form.activo.id_for_label }}">{{ form.activo.label }}</label>
+          {{ form.activo }}
+          {% if form.activo.errors %}
+            <ul class="errorlist">
+              {% for error in form.activo.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="button-group">
+        <a href="{% url 'instructores:lista_instructores' %}" class="btn-cancelar"><i class="fas fa-times me-2"></i>Cancelar</a>
+        <button type="submit" class="btn-guardar"><i class="fas fa-save me-2"></i>Guardar Instructor</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
