@@ -7,10 +7,13 @@ class Aprendiz(models.Model):
     telefono = models.CharField(max_length=15, blank=True, null=True)
     documento_identidad = models.CharField(max_length=20, unique=True)
     fecha_nacimiento = models.DateField()
-    correo = models.EmailField(unique=True)
-    ciudad = models.CharField(max_length=100)
+    correo = models.EmailField(null=True)
+    ciudad = models.CharField(max_length=100 , null=True)
     programa = models.CharField(max_length=100)
     
 
     def nombre_completo(self):
+        return f"{self.nombre} {self.apellido}"
+
+    def __str__(self):
         return f"{self.nombre} {self.apellido}"
